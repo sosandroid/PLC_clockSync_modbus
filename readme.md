@@ -49,14 +49,7 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 pip install pymodbus pyyaml
 ````
 
-### Windows notes
-
 Run from a console with network access to PLCs.
-No admin rights are needed (the script does not set the host time).
-Ensure outbound UDP 123 (NTP) and TCP 502 are allowed by the firewall (if NTP and PLC access are required).
-
-### Linux notes
-
 No root rights are needed (the script does not set the host time).
 Ensure outbound UDP 123 and TCP 502 are permitted.
 
