@@ -1,0 +1,50 @@
+# --- Mode of operation ---
+# "debug": no network I/O, print the register table
+# "test" : read-before, write, read-after on the first enabled device only
+# "normal": write to all enabled devices (silent console, logs to file)
+mode: normal
+
+# --- Time source ---
+# "system" : use local system clock (no rights required)
+# "ntp"    : query NTP servers (SNTP) without touching the system clock
+source_clock: ntp
+ntp_servers:
+  - "1.fr.pool.ntp.org"
+  - "2.fr.pool.ntp.org"
+
+# Only applied to the values written to PLCs (never to the host clock)
+offset_seconds: 0
+
+# --- Addressing ---
+# Documentation base for register addresses: 0 (default) or 1
+# With base 0, start_address=55 means driver writes address=55.
+# With base 1, driver will subtract 1 (i.e., use 54).
+address_base: 0
+start_address: 55  # decimal start address for Seconds; mapping uses 8 contiguous registers (55..62)
+
+# --- Modbus & retries ---
+port: 502
+timeout_s: 3.0
+retries: 2
+
+# --- Write behavior ---
+align_to_next_second_zero: true    # write at the next :00 to minimize drift
+verify_after_write: false          # set to true to read-back after write (normal mode)
+
+# --- Logging ---
+log_file: "./clock-sync.log"
+log_level: "INFO"
+
+# --- Devices list ---
+devices:
+  - ip: "192.168.10.11"
+    unit_id: 1
+    port: 502
+    enabled: true
+  - ip: "192.168.10.12"
+    unit_id: 0       # some PLCs require Unit ID 0 on Modbus TCP
+    port: 502
+    enabled: true
+  - ip: "192.168.10.13"
+    unit_id: 3
+    enabled: false   # disabled device (ignored)
