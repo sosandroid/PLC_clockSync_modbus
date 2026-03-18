@@ -47,3 +47,36 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 
 ```bash
 pip install pymodbus pyyaml
+
+### Windows notes
+
+Run from a console with network access to PLCs.
+No admin rights are needed (the script does not set the host time).
+Ensure outbound UDP 123 (NTP) and TCP 502 are allowed by the firewall (if NTP and PLC access are required).
+
+### Linux notes
+
+No root rights are needed (the script does not set the host time).
+Ensure outbound UDP 123 and TCP 502 are permitted.
+
+## Usage
+
+Usage
+````Shell
+python clock_sync.py --config config.yamlAfficher plus de lignes
+
+### Modes
+
+- Debug : Prints the computed register table; no Modbus communication.
+- Test : Reads the initial values, writes the new time on the first enabled device only, then reads back and prints the result.
+- Normal : Writes to all enabled devices. Console stays quiet; see the log file for results.
+
+## How the time is computed
+
+- The tool picks the time source:
+    - system: current local time (datetime.now().astimezone()).
+    - ntp: SNTP query (48-byte request) to the first server; the second server is a fallback. The host clock is not modified.
+- If align_to_next_second_zero=true, the target time is the next minute boundary (second=0). Otherwise, the target is the current time.
+- The offset_seconds is applied to the target time.
+- The timezone hours are derived from the target time’s local offset, including DST.
+- The eight registers are written in one Write Multiple Registers (FC16) operation.
