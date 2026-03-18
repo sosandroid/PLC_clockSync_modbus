@@ -47,6 +47,7 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 
 ```bash
 pip install pymodbus pyyaml
+````
 
 ### Windows notes
 
@@ -63,7 +64,8 @@ Ensure outbound UDP 123 and TCP 502 are permitted.
 
 Usage
 ````Shell
-python clock_sync.py --config config.yamlAfficher plus de lignes
+python clock_sync.py --config config.yaml
+````
 
 ### Modes
 
@@ -80,3 +82,6 @@ python clock_sync.py --config config.yamlAfficher plus de lignes
 - The offset_seconds is applied to the target time.
 - The timezone hours are derived from the target time’s local offset, including DST.
 - The eight registers are written in one Write Multiple Registers (FC16) operation.
+
+## Automation
+The script can be called from a cronjob of scheduled tasks
