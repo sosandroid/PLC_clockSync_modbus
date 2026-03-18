@@ -77,4 +77,4 @@ python clock_sync.py --config config.yaml
 - The eight registers are written in one Write Multiple Registers (FC16) operation.
 
 ## Automation
-The script can be called from a cronjob of scheduled tasks
+The script can be called from a cronjob or Window's scheduled tasks
