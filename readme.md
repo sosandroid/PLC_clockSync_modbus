@@ -1,6 +1,6 @@
 # PLC Clock Synchronization over Modbus TCP
 
-This tool updates PLC clocks using **Modbus TCP (Function Code 16**. It has been donr for Crouzet's PLC to align their internal RTC to a timer reference 
+This tool updates PLC clocks using **Modbus TCP (Function Code 16**. It has been done for Crouzet's PLC to align their internal RTC to a timer reference.  
 It writes 8 contiguous **holding registers** (16-bit integers) describing the clock:
 
 | Register (decimal) | Meaning                      | Range        |
