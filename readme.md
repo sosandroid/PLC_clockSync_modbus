@@ -23,7 +23,14 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 
 > Code provided as sample which must be tested before use in production environment. Feel free to modify it for a perfect requirements match 
 ---
-
+## Flowchart -  How it works
+````mermaid
+flowchart LR
+    A[Time reference] -->|ntp or local| B(This .py script)
+    B -->|Modbus TCP| D[PLC 1]
+    B -->|Modbus TCP| E[PLC 2]
+    B -->|Modbus TCP| F[PLC 3]
+````
 ## Features
 
 - Config-driven (YAML or JSON).
