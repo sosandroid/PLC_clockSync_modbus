@@ -21,6 +21,7 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 
 [![Buy me a coffee](./res/default-yellow.png)](https://www.buymeacoffee.com/ju9hJ8RqGk)
 
+> Code provided as sample which must be tested before use in production environment. Feel free to modify it for a perfect requirements match 
 ---
 
 ## Features
