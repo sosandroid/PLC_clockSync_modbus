@@ -1,6 +1,6 @@
 # PLC Clock Synchronization over Modbus TCP
 
-This tool updates PLC clocks using **Modbus TCP (Function Code 16 – Write Multiple Registers)**.  
+This tool updates PLC clocks using **Modbus TCP (Function Code 16**. It has been donr for Crouzet's PLC to align their internal RTC to a timer reference 
 It writes 8 contiguous **holding registers** (16-bit integers) describing the clock:
 
 | Register (decimal) | Meaning                      | Range        |
@@ -14,11 +14,12 @@ It writes 8 contiguous **holding registers** (16-bit integers) describing the cl
 | 61                 | Year (two digits)             | 0..99        |
 | 62                 | Timezone offset (hours)       | -12..+12     |
 
-> All values are **binary 16-bit** (no BCD).  
 > The timezone is computed from the local timezone **including DST**.
 
 The script can use either the **system clock** or an **NTP (SNTP) time source**, without modifying the host clock.  
 It can optionally **align the write at the next `second == 0`** to minimize drift across devices.
+
+[![Buy me a coffee](./res/default-yellow.png)](https://www.buymeacoffee.com/ju9hJ8RqGk)
 
 ---
 
@@ -41,6 +42,8 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 ### Prerequisites
 
 - **Python 3.9+** (tested with 3.9–3.12)
+- pymodbus
+- pyyaml
 - Network access to PLCs (TCP 502) and (optionally) to NTP servers (UDP 123)
 
 ### Install dependencies
@@ -56,7 +59,7 @@ Ensure outbound UDP 123 and TCP 502 are permitted.
 ## Usage
 
 Usage
-````Shell
+````bash
 python clock_sync.py --config config.yaml
 ````
 
@@ -77,4 +80,4 @@ python clock_sync.py --config config.yaml
 - The eight registers are written in one Write Multiple Registers (FC16) operation.
 
 ## Automation
-The script can be called from a cronjob or Window's scheduled tasks
+The script can be called from a cronjob or Window's scheduled tasks. Running it every week is a good timeframe. Every day for those wanting a better precision.
