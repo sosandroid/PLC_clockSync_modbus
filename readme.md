@@ -1,7 +1,7 @@
 # PLC Clock Synchronization over Modbus TCP
 
-This tool updates PLC clocks using **Modbus TCP (Function Code 16**. It has been done for Crouzet's PLC to align their internal RTC to a timer reference.  
-It writes 8 contiguous **holding registers** (16-bit integers) describing the clock:
+This tool updates PLC clocks using **Modbus TCP (Function Code 16)**. It has been done for Crouzet's PLC to align their internal RTC to a time reference.  
+It writes 8 contiguous **holding registers** describing the clock:
 
 | Register (decimal) | Meaning                      | Range        |
 |--------------------|------------------------------|--------------|
@@ -43,8 +43,8 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 ### Prerequisites
 
 - **Python 3.9+** (tested with 3.9–3.12)
-- pymodbus
-- pyyaml
+- [pymodbus](https://pymodbus.readthedocs.io/en/latest/)
+- [pyyaml](https://pypi.org/project/PyYAML/)
 - Network access to PLCs (TCP 502) and (optionally) to NTP servers (UDP 123)
 
 ### Install dependencies
