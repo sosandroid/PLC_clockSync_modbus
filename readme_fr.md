@@ -2,8 +2,8 @@
 
 [English  version](./readme.md)
 
-Cet outil met à jour l'horloge d'un PLC via **Modbus TCP** (code fonction 16). Il a été réalisé pour des automates Crouzet afin de recaler leur RTC interne automatiquement.  
-l'outil écrit les 8 registres de l'horloge en une seule commande.
+Cet outil met à jour l'horloge d'un PLC via **Modbus TCP**. Il a été réalisé pour des automates Crouzet afin de recaler leur RTC interne automatiquement.  
+l'outil écrit les 8 registres de l'horloge en une seule commande (code fonction 16).
 
 
 | Registre (décimal) | Correspondance               | Valeurs pos. |
@@ -19,7 +19,7 @@ l'outil écrit les 8 registres de l'horloge en une seule commande.
 
 > Le fuseau horaire est calculé depuis l'ordinateur hôte en incluant l'heure été / hiver.
 
-Ce script utilise, au choix, l'heure du locale du **système hôte ** ou un **serveur de temps NTP** sans modifier l'horloge de l'hôte.  
+Ce script utilise, au choix, l'heure du locale du **système hôte** ou un **serveur de temps NTP** sans modifier l'horloge de l'hôte.  
 Il peut optionnellement "déclencher" la mise à l'heure à la seconde nulle suivante pour minimiser le décalage entre les automates.
 
 [![Buy me a coffee](./res/default-yellow.png)](https://www.buymeacoffee.com/ju9hJ8RqGk)
@@ -38,8 +38,8 @@ flowchart LR
 
 ## Fonctionnalités
 
-- Congiguration par fichier YAML
-- Liste d'automate par adresse IP
+- Configuration par fichier YAML
+- Liste d'automates par adresse IP
 - Device ID personnalisé par automate -  L'ID 0 est possible
 - ADresse du registre de base, les autres sont considérés contigus
 - Fonctionnement en adresse base 1 ou 0 (si la documentation de votre PLC est en base 1 - adresse du type 40001, utilisez `address_base: 1`)
@@ -48,7 +48,7 @@ flowchart LR
   - **test**:  lecture de l'automate, calcul, écriture, vérification pour **le premier automate actif** seulement
   - **normal**: écriture sur **tous les automates actifs** de la liste (vérification optionnelle).
 - **Aucun changement de l'horloge locale**, NTP n'est utilisé qu'en référence.
-- Fichier de log configurable (par defaut `./clock-sync.log`).
+- Fichier de log configurable (par défaut `./clock-sync.log`).
 
 ---
 
@@ -85,9 +85,9 @@ python clock_sync.py --config config.yaml
     - ntp: Requête SNTP vers le serveur de votre choix. L'horloge de l'hôte n'est pas modifiée
 - Si `align_to_next_second_zero=true`, la mise à jour aura lieu à la prochaine minute pleine. Sinon, la mise à jour est immédiate avec l'heure courante.
 - Un décallage en secondes manuel peut être appliqué
-- Le fuseau horaire est calculé par usage de l'heure locale du système, y compris l'heure d'été, heure d'hivers.
+- Le fuseau horaire est calculé par usage de l'heure locale du système, y compris l'heure d'été, heure d'hiver.
 - Les 8 registres sont écrit d'un coup.
 
 ## Automatisation
 Vous pouvez utiliser un CronJob ou kes taches planifiées de Windows.  
-Une fréquence entre 1 et 7 jours devrait vous apporter la justesse temporelle souaitée.
+Une fréquence entre 1 et 7 jours devrait vous apporter la justesse temporelle souhaitée.
