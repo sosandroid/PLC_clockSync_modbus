@@ -2,19 +2,19 @@
 
 [Version française](./readme_fr.md)
 
-This tool updates PLC clocks using **Modbus TCP (Function Code 16)**. It has been done for Crouzet's PLC to align their internal RTC to a time reference.  
-It writes 8 contiguous **holding registers** describing the clock:
+This tool updates PLC clocks using **Modbus TCP**. It has been done for Crouzet's PLC to align their internal RTC to a time reference.  
+It writes 8 contiguous **holding registers** (Function Code 16) describing the clock:
 
 | Register (decimal) | Meaning                      | Range        |
-|--------------------|------------------------------|--------------|
-| 55                 | Seconds                       | 0..59        |
-| 56                 | Minutes                       | 0..59        |
-| 57                 | Hours                         | 0..23        |
-| 58                 | Day of week (Mon=0..Sun=6)    | 0..6         |
-| 59                 | Day of month                  | 1..31        |
-| 60                 | Month                         | 1..12        |
-| 61                 | Year (two digits)             | 0..99        |
-| 62                 | Timezone offset (hours)       | -12..+12     |
+|:------------------:|------------------------------|:------------:|
+| 55                 | Seconds                      | 0..59        |
+| 56                 | Minutes                      | 0..59        |
+| 57                 | Hours                        | 0..23        |
+| 58                 | Day of week (Mon=0..Sun=6)   | 0..6         |
+| 59                 | Day of month                 | 1..31        |
+| 60                 | Month                        | 1..12        |
+| 61                 | Year (two digits)            | 0..99        |
+| 62                 | Timezone offset (hours)      | -12..+12     |
 
 > The timezone is computed from the local timezone **including DST**.
 
@@ -23,7 +23,7 @@ It can optionally **align the write at the next `second == 0`** to minimize drif
 
 [![Buy me a coffee](./res/default-yellow.png)](https://www.buymeacoffee.com/ju9hJ8RqGk)
 
-> Code provided as sample which must be tested before use in production environment. Feel free to modify it for a perfect requirements match 
+> Code provided as sample only. It must be tested before use in your environment. Feel free to modify it for a perfect match 
 ---
 ## Flowchart -  How it works
 ````mermaid
