@@ -47,4 +47,5 @@ devices:
     enabled: true
   - ip: "192.168.10.13"
     unit_id: 3
+    port: 502
     enabled: false   # disabled device (ignored)
