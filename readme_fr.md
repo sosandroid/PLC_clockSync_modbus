@@ -1,4 +1,4 @@
-# Synchronisation d'horloge via Modbus TCp pour un automate
+# Synchronisation d'horloge via Modbus TCP pour un automate
 
 [English  version](./readme.md)
 
